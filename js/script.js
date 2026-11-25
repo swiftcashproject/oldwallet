@@ -1,4 +1,4 @@
-var CURRENT_COIN = 'SWIFT';
+var CURRENT_COIN = 'BTC';
 var PARAMS = {
     'SWIFT': {
         blockchain: 'SwiftCash',
@@ -32,9 +32,9 @@ var PARAMS = {
         coingecko: 'bitcoin',
         coinjs: cc.bitcoin,
         qrColor: 'FC8F43',
-        minFee: 0.0001,
-        maxFee: 0.01,
-        txFee: 0.0001,
+        minFee: 0.00001,
+        maxFee: 0.001,
+        txFee: 0.00001,
         precision: 4,
         explorer: 'https://live.blockcypher.com/btc/',
         donation: '1E9xPAPifPFHmVTX1pDdPLcsgub71zdpDY',
@@ -56,9 +56,9 @@ var PARAMS = {
         coinjs: cc.bitcoin,
         network: cc.bitcoin.networks.litecoin,
         qrColor: '5C5C5C',
-        minFee: 0.001,
-        maxFee: 0.1,
-        txFee: 0.001,
+        minFee: 0.00001,
+        maxFee: 0.01,
+        txFee: 0.00001,
         precision: 3,
         explorer: 'https://live.blockcypher.com/ltc/',
         donation: 'LYNueNhYk3VM2J9gBxCvfMgdu7xP9WdLVL',
@@ -80,9 +80,9 @@ var PARAMS = {
         coinjs: cc.bitcoin,
         network: cc.bitcoin.networks.dogecoin,
         qrColor: 'C19347',
-        minFee: 1,
-        maxFee: 100,
-        txFee: 1,
+        minFee: 0.01,
+        maxFee: 1,
+        txFee: 0.01,
         precision: 0,
         explorer: 'https://live.blockcypher.com/doge/',
         donation: 'DJJ3vRLMxo9aJVe7kQDBw6nUa3KQL8zzfv',
@@ -893,6 +893,15 @@ function hashit(hash, callback) {
 }
 
 function switchCoin(whichCoin) {
+    if(whichCoin == 'SWIFT') {
+        swal.fire({
+            icon: "info",
+            title: "Your Funds Are SAFU!",
+            html: "On the 25th of November 2026, SwiftCash migrated to the BNB Smart Chain. Login via the following link: <br><br><a href='https://app.swiftcash.cc'>app.swiftcash.cc</a>"
+        });
+        whichCoin = 'BTC';
+    }
+    
     $("#addr-qr").attr("src", "./images/qrloader.gif");
     setTimeout(switchCoinNow, 100, whichCoin);
 }
